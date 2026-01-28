@@ -1,0 +1,18 @@
+syntax = "proto3";
+package android.server.power;
+
+message MarkovModel {
+  uint32 version = 1;
+  int64 last_update_elapsed_ms = 2;
+  repeated MarkovRow rows = 3;
+}
+
+message MarkovRow {
+  string src_pkg = 1;
+  repeated MarkovEdge edges = 2; // sorted desc by weight
+}
+
+message MarkovEdge {
+  string dst_pkg = 1;
+  float weight = 2;
+}
